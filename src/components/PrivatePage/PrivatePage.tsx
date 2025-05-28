@@ -27,7 +27,10 @@ export default function PrivatePage() {
     const data = await res.json();
     setBooks(data.data);
   };
-  fetchBooks();
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
   const handleDelete = async (id: string) => {
     await API.delete(`/books/${id}`);
     setBooks((old) => old.filter((book) => book._id !== id));
